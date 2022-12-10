@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<h1>Personāla rediģēšana</h1>
+
+
+
+<script>
+
+
+
+
+    function GFG_Fun() {
+    //vajag ar list vertibam aizpildit (option un option2) no csv faila, šis pagaidu variants lai parbauditu vai strada.
+    var options = ["HTML", "CSS", "JS", "PHP", "jQuery"];
+    var options2 = ["HTML", "CSS", "JS", "PHP", "jQuery"];
+
+
+    var select = document.getElementById("amats");
+    var select2 = document.getElementById("struktura");
+    
+    for(var i = 0; i < options.length; i++) {
+    var opt = options[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    select.appendChild(el);
+  }
+  //analogs otra dropdown aizpildei
+  for(var i = 0; i < options2.length; i++) {
+    var opt2 = options2[i];
+    var el2 = document.createElement("option");
+    el2.textContent = opt2;
+    el2.value = opt2;
+    select2.appendChild(el2);
+  }
+           
+}
+</script> 
+
+
+
+</head>
+<body onload="GFG_Fun()">
+
+   
+    <p><form><label for="fname">Name: </label><input type="text" id="fname" name="fname"size="10pt"></p>
+    <label for="lname">Last name: </label><input type="text" id="lname" name="lname"size="10pt"></p>
+    <label for="grads">Grāds: </label><input type="text" id="grads" name="grads"size="10pt"></p>
+    <label for="telnr">Telefona numurs: </label><input type="text" id="telnr" name="telnr"size="10pt"></form></p>
+    <p>
+    <label for="amats">Amata veids:</label>
+    <select name="amats" id="amats">
+        <option>Izelies amatu</option>
+    </select>
+    
+    </p>
+    <p>
+    <label for="struktura">Struktūrvienības veids:</label>
+    <select name="struktura" id="struktura"></select>
+    </p>
+    <button onclick="submitOnClick()">Rediģēt/Saglabāt</button>
+    
+</body>
+
+</html>

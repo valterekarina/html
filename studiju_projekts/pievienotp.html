@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<h1>Personāla pievienošana</h1>
+
+
+
+<script>/*
+function update() {
+var select = document.getElementById('veids');
+var option = select.options[select.selectedIndex];
+
+document.getElementById("value").value=option.value;
+
+if (option.value == "Personals"){
+    document.write("<p>Jūs izvēlējāties: "+option.value+"</p><p><form><label for=\"fname\">Name: </label><input type=\"text\" id=\"fname\" name=\"fname\"size=\"10pt\"></p>"+
+    "<label for=\"lname\">Last name: </label><input type=\"text\" id=\"lname\" name=\"lname\"size=\"10pt\"></p>"+
+    "<label for=\"grads\">Grāds: </label><input type=\"text\" id=\"grads\" name=\"grads\"size=\"10pt\"></p>"+
+    "<label for=\"telnr\">Telefona numurs: </label><input type=\"text\" id=\"telnr\" name=\"telnr\"size=\"10pt\"></form></p>"); 
+     
+    }	
+    
+}
+*/			
+</script> 
+</head>
+<body>
+    <p><form><label for="fname">Name: </label><input type="text" id="fname" name="fname"size="10pt"></p>
+    <label for="lname">Last name: </label><input type="text" id="lname" name="lname"size="10pt"></p>
+    <label for="grads">Grāds: </label><input type="text" id="grads" name="grads"size="10pt"></p>
+    <label for="telnr">Telefona numurs: </label><input type="text" id="telnr" name="telnr"size="10pt"></form></p>
+    <p>
+    <label for="amats">Amata veids:</label>
+    <select name="amats" id="amats"></select>
+    </p>
+    <p>
+    <label for="struktura">Struktūrvienības veids:</label>
+    <select name="struktura" id="struktura"></select>
+    </p>
+    <button onclick="submitOnClick()">Pievienot</button>
+</body>
+
+</html>

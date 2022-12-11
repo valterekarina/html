@@ -41,9 +41,9 @@
     var d2 = ",";
 
     // Handle multiple fileuploads
-    let amatiViss;
-    let strukturasViss;
-    let personalsViss;
+    var amatiViss;
+    var strukturasViss;
+    var personalsViss;
     
     document.getElementById("csvFile").addEventListener("change", function(ev){
         let files = ev.currentTarget.files;
@@ -126,7 +126,6 @@
         amatiViss=a;
         strukturasViss=b;
         personalsViss=c;
-
             //alert(amati);
             //alert(struktura);
             //alert(personals);
@@ -143,6 +142,7 @@
         var select = document.getElementById("amats");
         var select2 = document.getElementById("struktura");
     
+        // TODO: create as single func()
         for(var i = 0; i < amatiem.length; i++) {
             var opt = amatiem[i];
             var el = document.createElement("option");
@@ -151,8 +151,8 @@
             select.appendChild(el);
         }
 
-
-            //analogs otra dropdown aizpildei
+        //analogs otra dropdown aizpildei
+        // TODO: create as single func()
         for(var i = 0; i < strukturas.length; i++) {
             var opt2 = strukturas[i];
             var el2 = document.createElement("option");
@@ -162,6 +162,11 @@
         }
     }        
     
+    function test_print() { 
+        let personalsRowCount = personalsViss.length;
+        
+        alert(personalsRowCount);
+    }
     </script>
     
     <h1>Personāla pievienošana</h1>
@@ -181,7 +186,7 @@
         <label for="struktura">Struktūrvienības veids:&nbsp; </label>
         <select name="struktura" id="struktura" class = "str"></select>
         </p>
-        <button onclick="submitOnClick()">Pievienot</button>
+        <button onclick=test_print()>Pievienot</button>
 </body>
 
 </html>

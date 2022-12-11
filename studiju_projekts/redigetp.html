@@ -1,66 +1,180 @@
 <!DOCTYPE html>
 <html>
 <head>
-<h1>Personāla rediģēšana</h1>
+<h1>Personāla rediģēšana (VAJAG SUMBIT POGU kas izsauc funkcijas)</h1>
 
 
+<form id="myForm">
+            <label for="csvFile">Pievienojiet amati.csv un stukturvienibas.csv failus</label>
+            <input type="file" id="csvFile" accept=".csv" multiple/>
+            <p><label for="personid">Personas ID:&nbsp; </label><input type="text" id="personid" name="personid"size="30pt"></p>
+            <br />
+            
+        </form>
 
-<script>
+        <style>
+            .amats{
+                width: 146pt;    
+            }
+        
+            .str{
+                width: 100pt;
+            }
+        </style>
+    
+        <script>
 
+function readFileAsText(file){
+                return new Promise(function(resolve,reject){
+                    let fr = new FileReader();
 
+                    fr.onload = function(){
+                        resolve(fr.result);
+                    };
 
+                    fr.onerror = function(){
+                        reject(fr);
+                    };
 
-    function GFG_Fun() {
-    //vajag ar list vertibam aizpildit (option un option2) no csv faila, šis pagaidu variants lai parbauditu vai strada.
-    var options = ["HTML", "CSS", "JS", "PHP", "jQuery"];
-    var options2 = ["HTML", "CSS", "JS", "PHP", "jQuery"];
+                    fr.readAsText(file);
+                });
+            }
+          
+            var d1 = "!";
+            var d2 = ",";
+
+            // Handle multiple fileuploads
+            document.getElementById("csvFile").addEventListener("change", function(ev){
+                let files = ev.currentTarget.files;
+                let readers = [];
+
+                // Abort if there were no files selected
+                if(!files.length) return;
+
+                // Store promises in array
+                for(let i = 0;i < files.length;i++){
+                    readers.push(readFileAsText(files[i]));
+                }
+                
+                // Trigger Promises
+                Promise.all(readers).then((values) => {
+                    // Values will be an array that contains an item
+                    // with the text of every selected file
+                    // ["File1 Content", "File2 Content" ... "FileN Content"]
+                    
+
+                    //prieks viendimensiju parbaudes
+                    //alert(values[0]);
+                   // alert(values[1]);
+                    
+                   
+                   let viens = stringTo2dArray(values[0],d1, d2);
+                    let divi = stringTo2dArray(values[1],d1, d2);
+                   
+                   //prieks divdimensiju parbaudes
+                    //alert(viens[0][0]+"\n"+divi[0][0]);
+                    compare(viens,divi);
+                });
+                
+            }, false);
+ 
+
+            function stringTo2dArray(string, d1, d2) {
+             return string.split(d1).map(function(x){return x.split(d2)});
+            }
+
+            function compare(viens,divi){
+                //alert(viens);
+                const amati = [];
+                const struktura = [];
+                if (viens[0][0]=="Am.ID") {
+                    
+               for (let i=1;i<viens.length;i++){
+                amati.push(viens[i][1]);
+                
+                 } 
+            
+                 
+               for (let i=1;i<divi.length;i++){
+                struktura.push(divi[i][1]);
+                 }
+                 
+                }
+                
+                else if (viens[0][0]=="Str.ID"){
+                    
+               for (let i=1;i<viens.length;i++){
+                struktura.push(viens[i][1]);
+                 }
+                
+               for (let i=1;i<divi.length;i++){
+                amati.push(divi[i][1]);
+                 } 
+                }
+                else { 
+                alert("Izvēlēti nepareizi faili");
+                window.open("Main.html", "_parent");
+            }
+
+            //alert(amati);
+            //alert(struktura);
+            GFG_Fun(amati,struktura);
+            }
+           
+        
+     
+    
+    function GFG_Fun(amati,struktura){
+
+    var amatiem = amati;
+    var strukturas= struktura;
 
 
     var select = document.getElementById("amats");
     var select2 = document.getElementById("struktura");
     
-    for(var i = 0; i < options.length; i++) {
-    var opt = options[i];
+    for(var i = 0; i < amatiem.length; i++) {
+    var opt = amatiem[i];
     var el = document.createElement("option");
     el.textContent = opt;
     el.value = opt;
     select.appendChild(el);
   }
+
+
   //analogs otra dropdown aizpildei
-  for(var i = 0; i < options2.length; i++) {
-    var opt2 = options2[i];
+  for(var i = 0; i < strukturas.length; i++) {
+    var opt2 = strukturas[i];
     var el2 = document.createElement("option");
     el2.textContent = opt2;
     el2.value = opt2;
     select2.appendChild(el2);
   }
-           
-}
+}        
+
+
+            
+          </script>
+
+
+<h1>Personāla redigēšana</h1>
+
 </script> 
-
-
-
 </head>
-<body onload="GFG_Fun()">
-
-   
-    <p><form><label for="fname">Name: </label><input type="text" id="fname" name="fname"size="10pt"></p>
-    <label for="lname">Last name: </label><input type="text" id="lname" name="lname"size="10pt"></p>
-    <label for="grads">Grāds: </label><input type="text" id="grads" name="grads"size="10pt"></p>
-    <label for="telnr">Telefona numurs: </label><input type="text" id="telnr" name="telnr"size="10pt"></form></p>
-    <p>
-    <label for="amats">Amata veids:</label>
-    <select name="amats" id="amats">
-        <option>Izelies amatu</option>
-    </select>
-    
-    </p>
-    <p>
-    <label for="struktura">Struktūrvienības veids:</label>
-    <select name="struktura" id="struktura"></select>
-    </p>
-    <button onclick="submitOnClick()">Rediģēt/Saglabāt</button>
-    
+<body>
+    <p><form><label for="fname">Name:&nbsp; </label><input type="text" id="fname" name="fname"size="30pt"></p>
+        <label for="lname">Last name:&nbsp; </label><input type="text" id="lname" name="lname"size="26pt"></p>
+        <label for="grads">Grāds:&nbsp; </label><input type="text" id="grads" name="grads"size="30pt"></p>
+        <label for="telnr">Telefona numurs: &nbsp; </label><input type="text" id="telnr" name="telnr"size="19pt"></form></p>
+        <p>
+        <label for="amats">Amata veids:&nbsp; </label>
+        <select name="amats" id="amats" class = "amats"></select>
+        </p>
+        <p>
+        <label for="struktura">Struktūrvienības veids:&nbsp; </label>
+        <select name="struktura" id="struktura" class = "str"></select>
+        </p>
+        <button onclick="submitOnClick()">Rediģēt/saglabāt</button>
 </body>
 
 </html>

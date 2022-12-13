@@ -4,7 +4,7 @@
     <h1>Izvēlēties darba failus:</h1>
 
     <form id="myForm">
-        <label for="csvFile">Pievienojiet amati.csv un stukturvienibas.csv failus</label>
+        <label for="csvFile">Pievienojiet <b>amati.csv</b>, <b>stukturvienibas.csv</b> un <b>personals.csv</b> failus</label>
         <input type="file" id="csvFile" accept=".csv" multiple/>
         <br />
     </form>
@@ -78,7 +78,6 @@
         });
     }, false);
  
-
     function stringTo2dArray(string, d1, d2) {
         return string.split(d1).map(function(x){return x.split(d2)});
     }
@@ -173,17 +172,37 @@
 
 </head>
 <body>
-    <p><form><label for="personid">Personas ID:&nbsp; </label><input type="text" id="personid" name="personid"size="24pt"></p>
+    <p><form>
+        <label for="personid">Personas ID:&nbsp; </label><input type="text" id="personid" name="personid"size="24pt"></p>
+
+        <label for="vel_strada">Vēl strādā:&nbsp; </label><input type="checkbox" id="vel_strada" name="vel_strada"size="24pt"></p>
+        <label for="radit">Name:&nbsp; </label><input type="checkbox" id="radit" name="radit"size="24pt"></p>
+        <label for="zp">ZP:&nbsp; </label><input type="checkbox" id="zp" name="zp"size="24pt"></p>
+        
         <label for="fname">Name:&nbsp; </label><input type="text" id="fname" name="fname"size="30pt"></p>
         <label for="lname">Last name:&nbsp; </label><input type="text" id="lname" name="lname"size="26pt"></p>
         <label for="grads">Grāds:&nbsp; </label><input type="text" id="grads" name="grads"size="30pt"></p>
         <label for="telnr">Telefona numurs: &nbsp; </label><input type="text" id="telnr" name="telnr"size="19pt"></form></p>
         <p>
-        <label for="amats">Amata veids:&nbsp; </label>
+        <label for="amats">Amata veids 1:&nbsp; </label>
+        <select name="amats" id="amats" class = "amats"></select>
+        </p>
+        <p>
+        <label for="struktura">Struktūrvienības veids 1:&nbsp; </label>
+        <select name="struktura" id="struktura" class = "str"></select>
+        </p>
+        <label for="amats">Amata veids 2:&nbsp; </label>
         <select name="amats" id="amats" class = "amats"></select>
         </p>
         <p>
         <label for="struktura">Struktūrvienības veids:&nbsp; </label>
+        <select name="struktura" id="struktura" class = "str"></select>
+        </p>
+        <label for="amats">Amata veids 3:&nbsp; </label>
+        <select name="amats" id="amats" class = "amats"></select>
+        </p>
+        <p>
+        <label for="struktura">Struktūrvienības veids 3:&nbsp; </label>
         <select name="struktura" id="struktura" class = "str"></select>
         </p>
         <button onclick=test_print()>Pievienot</button>
